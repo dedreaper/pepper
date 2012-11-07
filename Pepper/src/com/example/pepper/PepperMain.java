@@ -23,72 +23,26 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v4.app.NavUtils;
+import java.util.*;
+import android.app.*;
+import android.widget.*;
 
 @TargetApi(9)
 public class PepperMain extends Activity {
 
-	public static final String KEY_ROWID = "_id";
-	public static final String KEY_APPNAME = "app_name";
-	public static final String KEY_TIMESTAMP = "app_launchtime";
-	private static final String DATABASE_NAME = "Pepperdb";
-	private static final String DATABASE_TABLE = "launcher";
-	private static final int DATABASE_VERSION = 1;
-
-	private DbHelper pepperDbHelper;
-	private SQLiteDatabase pepperDatabase;
-	private Context pepperDbContext;
-	
-	private static class DbHelper extends SQLiteOpenHelper{
-
-		//public DbHelper(Context context, String name, CursorFactory factory, int version) 
-		public DbHelper(Context context) {
-			super(context, DATABASE_NAME, null, DATABASE_VERSION);
-			// TODO Auto-generated constructor stub
-		}
-
-		@Override
-		public void onCreate(SQLiteDatabase db) {
-			db.execSQL("CREATE TABLE" + DATABASE_TABLE + " (" + 
-					KEY_ROWID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-					KEY_APPNAME  + " TEXT NOT NULL, " +
-					KEY_TIMESTAMP + " TEXT NOT NULL);"
-						);
-			
-		}
-
-		@Override
-		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-			db.execSQL("DROP TABLE IF EXISTS" + DATABASE_TABLE);
-			onCreate(db);
-			
-		}}
-	
-	public PepperMain(Context c)
-	{
-		pepperDbContext = c;
-	}
-	
-	public PepperMain open()
-	{
-		pepperDbHelper = new DbHelper(pepperDbContext);
-		pepperDatabase = pepperDbHelper.getWritableDatabase();
-		return this;
-	}
-	public void close()
-	{
-		pepperDbHelper.close();
-	}
 	
     private static final String TAG = null;
 	private ActivityManager mActivityManager;
 	private Activity mContext;
+
+	private String appname;
 
 
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pepper_main);
-        Uri webpage = Uri.parse("fb://profile/dedreaper");
+        Uri webpage = Uri.parse("pandora://892219884763199517");
         Intent webIntent = new Intent(Intent.ACTION_VIEW, webpage);
         PackageManager packageManager = getPackageManager();
         List<ResolveInfo> activities = packageManager.queryIntentActivities(webIntent, 0);
@@ -109,8 +63,50 @@ public class PepperMain extends Activity {
         	startActivity( new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/<user_name_here>")));
         		   } 
         }
-        
-    }
+      }
+    
+	@Override
+	public void onStop()
+	{
+		
+		boolean diditwork = true;
+		
+		try{
+			RunningAppProcessInfo rapinfo =new RunningAppProcessInfo();
+			rapinfo = getForegroundApp();
+
+		
+		appname = rapinfo.processName;
+		int day = Calendar.getInstance().get(Calendar.DAY_OF_WEEK);
+		int time = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+	    PepperDB entry = new PepperDB(PepperMain.this);
+		entry.open();
+    	entry.createEntry(appname,day, time);
+	    entry.close();
+		
+		}
+		catch(Exception e){
+			diditwork = false;
+		}finally{
+			if(diditwork){
+				Dialog d = new Dialog(this);
+				d.setTitle("database entry stored!");
+				TextView TV = new TextView(this);
+				TV.setText("success");
+				d.setContentView(TV);
+				d.show();
+			}
+			else{
+				
+				Dialog d = new Dialog(this);
+				d.setTitle("database entry not stored!");
+				TextView TV = new TextView(this);
+				TV.setText("fail");
+				d.setContentView(TV);
+				d.show();
+			}
+		}
+	}
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -202,3 +198,4 @@ public class PepperMain extends Activity {
         return false;
     }
 }
+

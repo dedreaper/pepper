@@ -16,9 +16,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.ResolveInfo;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteDatabase.CursorFactory;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -37,11 +34,24 @@ public class PepperMain extends Activity {
 
 	private String appname;
 
+	
+
+
+    /**
+     * Toggle this boolean constant's value to turn on/off logging
+     * within the class. 
+     */
+    private static final boolean VERBOSE = true;
+
+
+
+
 
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pepper_main);
+        if (VERBOSE) Log.v(TAG, "+++ ON CREATE +++");
         Uri webpage = Uri.parse("pandora://892219884763199517");
         Intent webIntent = new Intent(Intent.ACTION_VIEW, webpage);
         PackageManager packageManager = getPackageManager();
@@ -68,17 +78,25 @@ public class PepperMain extends Activity {
 	@Override
 	public void onStop()
 	{
-		
+		super.onStop();
+	       if (VERBOSE) Log.v(TAG, "-- ON STOP --");
 		boolean diditwork = true;
+		RunningAppProcessInfo rapinfo =new RunningAppProcessInfo();
 		
-		try{
-			RunningAppProcessInfo rapinfo =new RunningAppProcessInfo();
-			rapinfo = getForegroundApp();
-
 		
+			while (rapinfo == null)
+		{
+		rapinfo = getForegroundApp();
+		}
+	try
+	{
 		appname = rapinfo.processName;
 		int day = Calendar.getInstance().get(Calendar.DAY_OF_WEEK);
 		int time = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+		if (VERBOSE) Log.v(TAG, "-- readout of data --");
+		if (VERBOSE) Log.v(TAG, appname);
+		if (VERBOSE) Log.v(TAG, Integer.toString(day));
+		if (VERBOSE) Log.v(TAG, Integer.toString(time));
 	    PepperDB entry = new PepperDB(PepperMain.this);
 		entry.open();
     	entry.createEntry(appname,day, time);
@@ -87,10 +105,12 @@ public class PepperMain extends Activity {
 		}
 		catch(Exception e){
 			diditwork = false;
+			Log.v(TAG, e.getMessage().toString());
 		}finally{
 			if(diditwork){
 				Dialog d = new Dialog(this);
 				d.setTitle("database entry stored!");
+				if (VERBOSE) Log.v(TAG, "-- stored to database --");
 				TextView TV = new TextView(this);
 				TV.setText("success");
 				d.setContentView(TV);
@@ -107,6 +127,34 @@ public class PepperMain extends Activity {
 			}
 		}
 	}
+	
+	
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (VERBOSE) Log.v(TAG, "++ ON START ++");
+    }
+
+   @Override
+    public void onResume() {
+        super.onResume();
+        if (VERBOSE) Log.v(TAG, "+ ON RESUME +");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (VERBOSE) Log.v(TAG, "- ON PAUSE -");
+    }
+
+   
+
+   @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (VERBOSE) Log.v(TAG, "- ON DESTROY -");
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -197,5 +245,34 @@ public class PepperMain extends Activity {
 
         return false;
     }
+    
+    
+    
+	public Intent findTwitterClient() {
+		final String[] soughtApp = {
+				//This list is hard coded stuff, replace this with the 
+				//return of the database call
+				// package // name - nb installs (thousands)
+				"com.twitter.android", // official - 10 000
+				"com.twidroid", // twidroyd - 5 000
+				"com.handmark.tweetcaster", // Tweecaster - 5 000
+				"com.thedeck.android"};// TweetDeck - 5 000 
+		Intent tweetIntent = new Intent();
+		tweetIntent.setType("text/plain");
+		final PackageManager packageManager = getPackageManager();
+		List<ResolveInfo> list = packageManager.queryIntentActivities(
+				tweetIntent, PackageManager.MATCH_DEFAULT_ONLY);
+
+		for (int i = 0; i < soughtApp.length; i++) {
+			for (ResolveInfo resolveInfo : list) {
+				String p = resolveInfo.activityInfo.packageName;
+				if (p != null && p.startsWith(soughtApp[i])) {
+					tweetIntent.setPackage(p);
+					return tweetIntent;
+				}
+			}
+		}
+		return null;
+	}
 }
 

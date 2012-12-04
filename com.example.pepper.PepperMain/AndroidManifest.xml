@@ -15,9 +15,27 @@
             android:name=".PepperMain"
             android:label="@string/title_activity_pepper_main" >
             <intent-filter>
+                <action android:name="com.example.pepper.PEPPERMAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+               <activity
+            android:name=".Splash"
+            android:label="@string/title_activity_pepper_main" >
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+                <activity
+            android:name=".DropDownMenu"
+            android:label="@string/title_activity_pepper_main" >
+            <intent-filter>
+                <action android:name="com.example.pepper.MENU" />
+
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
     </application>

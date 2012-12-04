@@ -19,6 +19,7 @@ import android.content.pm.ResolveInfo;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.support.v4.app.NavUtils;
 import java.util.*;
 import android.app.*;
@@ -35,9 +36,7 @@ public class PepperMain extends Activity {
 	private String appname;
 
 	
-
-
-    /**
+	/**
      * Toggle this boolean constant's value to turn on/off logging
      * within the class. 
      */
@@ -52,6 +51,11 @@ public class PepperMain extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pepper_main);
         if (VERBOSE) Log.v(TAG, "+++ ON CREATE +++");
+
+        //Intent intent =  getPackageManager().getLaunchIntentForPackage("com.facebook.katana");
+        //startActivity(intent);
+        //if (VERBOSE) Log.v(TAG, intent.getDataString());
+        /* I'll set you here for now
         Uri webpage = Uri.parse("pandora://892219884763199517");
         Intent webIntent = new Intent(Intent.ACTION_VIEW, webpage);
         PackageManager packageManager = getPackageManager();
@@ -72,7 +76,7 @@ public class PepperMain extends Activity {
         	catch (Exception e) {
         	startActivity( new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/<user_name_here>")));
         		   } 
-        }
+        }*/
       }
     
 	@Override

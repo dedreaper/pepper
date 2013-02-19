@@ -2,9 +2,9 @@
     package="com.example.pepper"
     android:versionCode="1"
     android:versionName="1.0" >
-
+	<uses-permission android:name="android.permission.GET_TASKS" />
     <uses-sdk
-        android:minSdkVersion="9"
+        android:minSdkVersion="7"
         android:targetSdkVersion="15" />
 
     <application
@@ -34,6 +34,15 @@
             android:label="@string/title_activity_pepper_main" >
             <intent-filter>
                 <action android:name="com.example.pepper.MENU" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".EntryPoint"
+            android:label="@string/title_activity_pepper_main" >
+            <intent-filter>
+                <action android:name="com.example.pepper.ENTRY" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>

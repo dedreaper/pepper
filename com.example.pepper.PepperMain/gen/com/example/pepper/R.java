@@ -18,21 +18,38 @@ public final class R {
     public static final class drawable {
         public static final int ic_action_search=0x7f020000;
         public static final int ic_launcher=0x7f020001;
-        public static final int peppersplash=0x7f020002;
+        public static final int pepperbase=0x7f020002;
+        public static final int pepperbutton=0x7f020003;
+        public static final int pepperbutton2=0x7f020004;
+        public static final int pepperbuttonpressed=0x7f020005;
+        public static final int pepperfire=0x7f020006;
+        public static final int pepperfire2=0x7f020007;
     }
     public static final class id {
-        public static final int Button01=0x7f090005;
-        public static final int CheckBox01=0x7f090004;
-        public static final int TextView01=0x7f090003;
-        public static final int button1=0x7f090002;
-        public static final int checkBox1=0x7f090000;
-        public static final int menu_settings=0x7f090006;
-        public static final int tvDBDisplay=0x7f090001;
+        public static final int button1=0x7f090007;
+        public static final int button2=0x7f09000b;
+        public static final int button3=0x7f09000a;
+        public static final int firstButton=0x7f090001;
+        public static final int fragment1=0x7f090004;
+        public static final int menu_settings=0x7f09000e;
+        public static final int optionsTabTitle=0x7f090005;
+        public static final int progressBar1=0x7f090006;
+        public static final int recentTabTitle=0x7f090008;
+        public static final int secondButton=0x7f090002;
+        public static final int tabbar=0x7f090000;
+        public static final int textView1=0x7f09000c;
+        public static final int textView2=0x7f090009;
+        public static final int textView3=0x7f09000d;
+        public static final int thirdButton=0x7f090003;
     }
     public static final class layout {
         public static final int activity_pepper_main=0x7f030000;
-        public static final int splash=0x7f030001;
-        public static final int sqlview=0x7f030002;
+        public static final int fragment_background=0x7f030001;
+        public static final int options_tab=0x7f030002;
+        public static final int recent_tab=0x7f030003;
+        public static final int scheduled_tab=0x7f030004;
+        public static final int splash=0x7f030005;
+        public static final int sqlview=0x7f030006;
     }
     public static final class menu {
         public static final int activity_pepper_main=0x7f080000;

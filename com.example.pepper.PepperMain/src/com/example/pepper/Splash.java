@@ -27,8 +27,10 @@ public class Splash extends Activity  {
 					e.printStackTrace();
 					}finally
 						{
-						Intent intent = new Intent("com.example.pepper.MENU");
+						Intent intent = new Intent("com.example.pepper.ENTRY");
 						if (VERBOSE) Log.v(TAG, "+++ Starting launcher +++");
+						if (VERBOSE) Log.v(TAG, "intent contents = " + intent);
+						
 						startActivity(intent);
 				        
 						}

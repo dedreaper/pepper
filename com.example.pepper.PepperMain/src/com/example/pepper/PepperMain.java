@@ -3,7 +3,7 @@ package com.example.pepper;
 import java.util.Iterator;
 import java.util.List;
 
-import android.net.Uri;
+
 import android.os.Bundle;
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -14,19 +14,16 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.ResolveInfo;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.support.v4.app.NavUtils;
-import java.util.*;
-import android.app.*;
+import android.view.View.OnClickListener;
+import android.support.v4.app.FragmentActivity;
 import android.widget.*;
 
-@TargetApi(9)
-public class PepperMain extends Activity {
+@TargetApi(7)
+public class PepperMain extends FragmentActivity {
 
 	
     private static final String TAG = null;
@@ -41,17 +38,98 @@ public class PepperMain extends Activity {
      * within the class. 
      */
     private static final boolean VERBOSE = true;
-
-
+            final Button firstButton = (Button) findViewById(R.id.firstButton);
+            final Button secondButton = (Button) findViewById(R.id.secondButton);        
+            final Button thirdButton = (Button) findViewById(R.id.thirdButton);
+            //final TabHost tabHost= (TabHost)findViewById(android.R.id.tabhost);  // The activity TabHost
 
 
 
 	@Override
     public void onCreate(Bundle savedInstanceState) {
+        if (VERBOSE) Log.v(TAG, "+++ ON CREATE +++");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pepper_main);
-        if (VERBOSE) Log.v(TAG, "+++ ON CREATE +++");
+        addDynamicFragment();
 
+
+
+            /* tabs        
+
+            
+           Resources res = getResources(); // Resource object to get Drawables
+           tabHost = (TabHost)findViewById(android.R.id.tabhost);
+           tabHost.setup();
+            TabHost.TabSpec spec;  // Resusable TabSpec for each tab
+            Intent intent;  // Reusable Intent for each tab
+
+            intent = new Intent().setClass(this, RecentTab.class);
+           spec = tabHost.newTabSpec("first").setIndicator("First").setContent(intent);
+           tabHost.addTab(spec);
+            
+            intent = new Intent().setClass(this, ScheduledTab.class);
+           spec = tabHost.newTabSpec("second").setIndicator("Second").setContent(intent);
+           tabHost.addTab(spec);   
+
+            intent = new Intent().setClass(this, OptionsTab.class);
+           spec = tabHost.newTabSpec("third").setIndicator("Third").setContent(intent);
+           tabHost.addTab(spec);
+
+
+
+            tabHost.setCurrentTab(0);*/
+
+            firstButton.setOnClickListener(new OnClickListener() {
+
+                public void onClick(View v)
+                {
+                    //tabHost.setCurrentTab(0);
+                    firstButton.setBackgroundResource(R.drawable.pepperbuttonpressed);
+                    secondButton.setBackgroundResource(R.drawable.pepperbutton);              
+                    thirdButton.setBackgroundResource(R.drawable.pepperbutton);
+         
+                }
+
+            });
+
+
+            secondButton.setOnClickListener(new OnClickListener() {
+
+                public void onClick(View v)
+                {
+                    //tabHost.setCurrentTab(1);
+                    firstButton.setBackgroundResource(R.drawable.pepperbutton);
+                    secondButton.setBackgroundResource(R.drawable.pepperbuttonpressed);                       
+                    thirdButton.setBackgroundResource(R.drawable.pepperbutton);                        
+
+
+                }
+
+            });
+
+
+            thirdButton.setOnClickListener(new OnClickListener() {
+
+                public void onClick(View v)
+                {
+                    //tabHost.setCurrentTab(3);
+                    firstButton.setBackgroundResource(R.drawable.pepperbutton);
+                    secondButton.setBackgroundResource(R.drawable.pepperbutton);              
+                    thirdButton.setBackgroundResource(R.drawable.pepperbuttonpressed);
+
+
+                }
+
+            });
+
+
+
+        
+        
+        
+        
+        
+        
         //Intent intent =  getPackageManager().getLaunchIntentForPackage("com.facebook.katana");
         //startActivity(intent);
         //if (VERBOSE) Log.v(TAG, intent.getDataString());
@@ -78,13 +156,20 @@ public class PepperMain extends Activity {
         		   } 
         }*/
       }
-    
+        private void addDynamicFragment() {
+            // TODO Auto-generated method stub
+                   // creating instance of the HelloWorldFragment.
+        	android.support.v4.app.Fragment fg = RecentTab.newInstance();
+            // adding fragment to relative layout by using layout id
+            getSupportFragmentManager().beginTransaction().add(R.id.fragment1, fg, TAG);
+        }
+        
 	@Override
 	public void onStop()
 	{
 		super.onStop();
 	       if (VERBOSE) Log.v(TAG, "-- ON STOP --");
-		boolean diditwork = true;
+		/*boolean diditwork = true;
 		RunningAppProcessInfo rapinfo =new RunningAppProcessInfo();
 		
 		
@@ -129,7 +214,7 @@ public class PepperMain extends Activity {
 				d.setContentView(TV);
 				d.show();
 			}
-		}
+		}*/
 	}
 	
 	

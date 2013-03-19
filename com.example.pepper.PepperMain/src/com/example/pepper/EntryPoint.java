@@ -105,7 +105,7 @@ public class EntryPoint extends FragmentActivity {
 
 		// Replace whatever is in the fragment_container view with this fragment,
 		// and add the transaction to the back stack so the user can navigate back
-		transaction.replace(R.id.fragment1, RecentTab.newInstance());
+		transaction.replace(R.id.fragment1, fg);
 		transaction.addToBackStack(null);
 
 		// Commit the transaction

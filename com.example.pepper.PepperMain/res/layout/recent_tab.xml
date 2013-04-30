@@ -17,15 +17,6 @@
         />
 
     <Button
-        android:id="@+id/RTABtimeButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView2"
-        android:layout_marginTop="25dp"
-        android:layout_toRightOf="@+id/RTABdayButton"
-        android:text="@string/r_tab_time" />
-
-    <Button
         android:id="@+id/RTABdayButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -33,15 +24,6 @@
         android:layout_alignBottom="@+id/RTABtimeButton"
         android:layout_alignParentLeft="true"
         android:text="@string/r_tab_day" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/RTABtimeButton"
-        android:layout_alignBottom="@+id/RTABtimeButton"
-        android:layout_alignParentRight="true"
-        android:text="Automate" />
 
     <ProgressBar
         android:id="@+id/progressBar1"
@@ -63,11 +45,31 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
         android:layout_below="@+id/textView1"
-        android:layout_marginTop="35dp"
         android:layout_marginBottom="35dp"
-        android:text="Program"
+        android:layout_marginTop="35dp"
         android:gravity="center"
+        android:text="Program"
         android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <Button
+        android:id="@+id/RTABautomateButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/RTABtimeButton"
+        android:text="@string/r_tab_automate" />
+
+    <Button
+        android:id="@+id/RTABtimeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/textView2"
+        android:layout_marginTop="20dp"
+        android:text="@string/r_tab_time" />
 
 </RelativeLayout>

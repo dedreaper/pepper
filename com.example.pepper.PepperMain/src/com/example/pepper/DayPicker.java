@@ -32,7 +32,7 @@ as well as the position in the list that it was in (to cross reference the Calen
 public class DayPicker extends ListActivity{
     private static final boolean VERBOSE = true;
     private static final String TAG = null;
-	String[] canonicalList = {"All Days", "Sunday", "Monday", "Tuesday", "Wednesady", "Thursday", "Friday", "Saturday" };
+	String[] dayList = {"All Days", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
 	
 	
 	
@@ -40,7 +40,7 @@ public class DayPicker extends ListActivity{
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-	    setListAdapter(new ArrayAdapter<String>(DayPicker.this, android.R.layout.simple_list_item_1, canonicalList));
+	    setListAdapter(new ArrayAdapter<String>(DayPicker.this, android.R.layout.simple_list_item_1, dayList));
 	
 	}
 	@TargetApi(Build.VERSION_CODES.GINGERBREAD)
@@ -49,10 +49,8 @@ public class DayPicker extends ListActivity{
 		// TODO Auto-generated method stub
 		super.onListItemClick(l, v, position, id);
 	      Intent returnIntent = new Intent();
-	      returnIntent.putExtra("SelectedDay",canonicalList[position]);
-	      int dayOweek = Calendar.getInstance().get(Calendar.DAY_OF_WEEK);
-	      if (VERBOSE) Log.v(TAG, "Value of Calender.DAY_OF_WEEK = " + dayOweek );
-	      if (VERBOSE) Log.v(TAG, "Value of Calender.DAY_OF_WEEK = " + Calendar.getInstance().getDisplayName(Calendar.getInstance().get(dayOweek), Calendar.LONG, Locale.US) );
+	      returnIntent.putExtra("SelectedDay",dayList[position]);
+	      returnIntent.putExtra("DayRank", position);
 	      if (VERBOSE) Log.v(TAG, "Value of Canonical list at position clicked = " + position );
 			
 		setResult(RESULT_OK,returnIntent );        

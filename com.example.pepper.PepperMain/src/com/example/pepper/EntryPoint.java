@@ -1,6 +1,7 @@
 package com.example.pepper;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
@@ -13,6 +14,7 @@ public class EntryPoint extends FragmentActivity {
     Button firstButton;
     Button secondButton;        
     Button thirdButton;
+    PepperDB pepperDB;
 
 	@Override
 	protected void onResume() {
@@ -25,8 +27,8 @@ public class EntryPoint extends FragmentActivity {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pepper_main);
+        pepperDB = new PepperDB(this.getBaseContext());
         addDynamicFragment();
-
         firstButton = (Button) findViewById(R.id.firstButton);
         secondButton = (Button) findViewById(R.id.secondButton);        
         thirdButton = (Button) findViewById(R.id.thirdButton);
@@ -92,7 +94,8 @@ public class EntryPoint extends FragmentActivity {
 		// TODO Auto-generated method stub
 		super.onStart();
 		
-
+		//Intent service = new Intent(this, LauncherService.class);
+		//startService(service); 
         
 	}
 

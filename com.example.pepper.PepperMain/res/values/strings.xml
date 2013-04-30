@@ -5,8 +5,12 @@
     <string name="menu_settings">Settings</string>
     <string name="title_activity_pepper_main">Pepper</string>
     <string name="s_tab_day">day</string>
-    <string name="r_tab_day">herp day</string>
-    <string name="r_tab_time">herp time</string>
+    <string name="s_tab_time">time</string>
+    <string name="r_tab_day">select day</string>
+    <string name="r_tab_time">select time</string>
     <string name="menuListSizeOption">5</string>
+    <string name="select">Select</string>
+    <string name="cancel">Cancel</string>
+    <string name="r_tab_automate">Create Automation Entry!</string>
 
 </resources>

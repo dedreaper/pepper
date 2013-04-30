@@ -39,6 +39,15 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".DbDropDownMenu"
+            android:label="@string/title_activity_pepper_main" >
+            <intent-filter>
+                <action android:name="com.example.pepper.DBMENU" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".EntryPoint"
             android:label="@string/title_activity_pepper_main" >
             <intent-filter>
@@ -52,6 +61,15 @@
             android:label="@string/title_activity_pepper_main" >
             <intent-filter>
                 <action android:name="com.example.pepper.DAY" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+                        <activity
+            android:name=".TimeSelector"
+            android:label="@string/title_activity_pepper_main" >
+            <intent-filter>
+                <action android:name="com.example.pepper.TIME" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>

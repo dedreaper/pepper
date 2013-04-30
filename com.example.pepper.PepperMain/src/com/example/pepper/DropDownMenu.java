@@ -23,7 +23,7 @@ public class DropDownMenu extends ListActivity{
 	ArrayList<String> canonicalList = new ArrayList<String>();
 	ArrayList<String> labelList = new ArrayList<String>();
 	private static final int SELF_FILTER_BUFFER_SIZE = 2;
-	int SizeOption = 5;
+	int SizeOption = R.string.menuListSizeOption;
 	
 	
 
@@ -59,11 +59,19 @@ public class DropDownMenu extends ListActivity{
 		String retrievedPackageName = task.baseIntent.getComponent().getPackageName();
 
 	    canonicalList.add(retrievedPackageName);
+	    String retrievedPackageLabel = null;
+		try {
+			retrievedPackageLabel = (String) getPackageManager().getApplicationLabel(getPackageManager().getApplicationInfo(retrievedPackageName, 0));
+		} catch (NameNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    labelList.add(retrievedPackageLabel);
 	    index++;
 			if (VERBOSE) Log.v(TAG, retrievedPackageName + "added to canonicalList at index " + canonicalList.indexOf(retrievedPackageName));
 	    }	    
 
-	    setListAdapter(new ArrayAdapter<String>(DropDownMenu.this, android.R.layout.simple_list_item_1, canonicalList));
+	    setListAdapter(new ArrayAdapter<String>(DropDownMenu.this, android.R.layout.simple_list_item_1, labelList));
 	
 	}
 	@Override
@@ -73,20 +81,15 @@ public class DropDownMenu extends ListActivity{
 		if (VERBOSE) Log.v(TAG, canonicalList.get(0));
 
 		Object o = this.getListAdapter().getItem(position);
-	      String programName = o.toString();
-	      //Intent returnIntent = new Intent();
+	      String programName = canonicalList.get(position);
+	      String applabel = o.toString();//Intent returnIntent = new Intent();
 	      
 	      //trying this stuff out
 	      Intent returnIntent = getPackageManager().getLaunchIntentForPackage(programName);
-			String appname = null;
-			try {
-				appname  = (String) getPackageManager().getApplicationLabel(getPackageManager().getApplicationInfo(programName, 0));
-			} catch (NameNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			if (VERBOSE && appname !=null) Log.v(TAG, "retrieved app name for " + appname );
-			returnIntent.putExtra("SelectedProgramName", appname);
+
+
+			if (VERBOSE && applabel !=null) Log.v(TAG, "retrieved app name for " + applabel );
+			returnIntent.putExtra("SelectedProgramName", applabel);
 				     
 		//this stuff is working		   
 	      returnIntent.putExtra("SelectedProgram",programName);

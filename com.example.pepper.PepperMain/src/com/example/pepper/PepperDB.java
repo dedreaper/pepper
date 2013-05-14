@@ -1,5 +1,6 @@
 package com.example.pepper;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import android.content.*;
 import android.database.sqlite.*;
@@ -16,6 +17,7 @@ public class PepperDB
 	public static final String KEY_MINUTE = "app_minute";
 	private static final String DATABASE_NAME = "Pepperdb";
 	private static final String DATABASE_TABLE = "launcher";
+	//private static final String VIEW_NAME = "bgview";
 	private static final int DATABASE_VERSION = 1;
 	private static final boolean VERBOSE = true;
 	private static final String TAG = null;
@@ -120,6 +122,85 @@ public class PepperDB
 	 * content.open();
 	 * String dump = content.getAllData();
 	 */
+	public long getNextEntryToLaunch() //change back to long
+	{
+		String[] columns = new String[]{KEY_ROWID, KEY_APPNAME, KEY_DISPLAYNAME, KEY_DAY, KEY_HOUR,KEY_MINUTE};
+
+		Cursor c = pepperDatabase.query(DATABASE_TABLE, columns,KEY_DAY+"=" +Calendar.getInstance().get(Calendar.DAY_OF_WEEK)+ " OR "
+				+KEY_DAY+"=0", null, null, null, KEY_HOUR);
+		int iRow = c.getColumnIndex(KEY_ROWID);
+		//int iDay = c.getColumnIndex(KEY_DAY);
+		int iHour = c.getColumnIndex(KEY_HOUR);
+		int iMin = c.getColumnIndex(KEY_MINUTE);
+		//int iApp = c.getColumnIndex(KEY_APPNAME);
+		//int iName = c.getColumnIndex(KEY_DISPLAYNAME);
+		int comphour = -1;
+		int compmin = -1;
+		long returnID = -1;
+		//String returnString = "";
+		while(c.moveToNext())
+		{ 
+			if(c.getInt(iHour) < Calendar.getInstance().get(Calendar.HOUR_OF_DAY)&& returnID ==-1)
+			{
+				if (VERBOSE) Log.v(TAG, c.getInt(iHour)+" was smaller than " +Calendar.getInstance().get(Calendar.HOUR_OF_DAY)+ " looping back");
+			continue;
+			}
+			else //the hour is either equal or greater to the current hour, or there's nothing on the list. 
+			{		
+				if (VERBOSE) Log.v(TAG, "hour is greater to or equal to the current hour");
+				//case where the launch time in minutes is less than the current time
+				if(c.getInt(iHour)== Calendar.getInstance().get(Calendar.HOUR_OF_DAY) && c.getInt(iMin) < Calendar.getInstance().get(Calendar.MINUTE)){
+					if (VERBOSE) Log.v(TAG, "minute "+c.getInt(iMin)+" was smaller than " +Calendar.getInstance().get(Calendar.MINUTE)+ " looping back");
+					continue;
+				}
+				else
+				{//this entry is guaranteed to have it's hour and minute larger than, or equal to this very minute
+					
+					if(returnID == -1)
+					{comphour = c.getInt(iHour);
+					returnID = c.getLong(iRow);
+					compmin = c.getInt(iMin);
+					if (VERBOSE) Log.v(TAG, "initializing "+c.getInt(iRow)+ " RowID to be @ time "+c.getInt(iHour)+":" +c.getInt(iMin));
+					//now that we have a comparing value to measure, we want to make sure that this entry is closest to now.					
+					continue;
+					}
+					else
+					{
+					//use temporary variables to compare the next 
+					if(c.getInt(iHour)> comphour)
+						{
+						//the next entry is at least an hour later than this entry, and the stored entry is the closest
+						if (VERBOSE) Log.v(TAG, "Returning "+returnID+ " RowID");
+						
+						return returnID;
+						}
+					else//if not then the iHour must be equal to the comphour, and minutes need to be compared
+						{
+						//we only care if the minutes of the entry are closer to now than the stored entry, while still being greater than now.
+							if(c.getInt(iMin)>Calendar.getInstance().get(Calendar.MINUTE)&& c.getInt(iMin)< compmin)
+							{
+							//we got a new winner!
+							comphour = c.getInt(iHour);
+							returnID = c.getLong(iRow);
+							compmin = c.getInt(iMin);
+							if (VERBOSE) Log.v(TAG, "Found "+c.getInt(iRow)+ " RowID to be @ time "+c.getInt(iHour)+":" +c.getInt(iMin));
+							}
+							else
+							{
+							//might want to check the next entry to see if it's closer...
+							continue;
+							}
+						}
+					}
+				}
+			}
+	
+		}
+		if (VERBOSE) Log.v(TAG, "Database EOF: Returning "+returnID+ " RowID");
+			return returnID;
+	
+	}
+	
 	public String getAllData()
 	{
 		//this bad motha rolls up all the data in the table  
@@ -132,6 +213,9 @@ public class PepperDB
 		//if (VERBOSE) Log.v(TAG, " pepperDatabase Open variable is :  " + content.pepperDatabase.isOpen());
 		//Cursor c = content.pepperDatabase.query(DATABASE_TABLE, columns, null, null, null, null, null);
 		Cursor c = pepperDatabase.query(DATABASE_TABLE, columns, null, null, null, null, null);		
+		
+		
+		
 		int iRow = c.getColumnIndex(KEY_ROWID);
 		int iApp = c.getColumnIndex(KEY_APPNAME);
 		int iName = c.getColumnIndex(KEY_DISPLAYNAME);

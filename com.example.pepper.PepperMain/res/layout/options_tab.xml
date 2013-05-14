@@ -10,7 +10,8 @@
         android:layout_height="wrap_content"
         android:background="#FF0080"
         android:gravity="center"
-        android:text="Options Tab:" />
+        android:textSize="20sp"
+        android:text="@string/o_tab_title" />
 
     <ProgressBar
         android:id="@+id/progressBar1"
@@ -21,51 +22,15 @@
         android:layout_below="@+id/optionsTabTitle" />
 
     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/editText1"
-        android:layout_toRightOf="@+id/textView1"
-        android:text="@string/menuListSizeOption" />
-
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/editText1"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="15dp"
-        android:text="Current task list size:  " />
-
-    <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/progressBar1"
-        android:text="Use the text area to edit the maximum number or programs that Pepper will fetch for you, and press update.  Pepper will only search for recent tasks up to the amount specified" />
-
-    <EditText
-        android:id="@+id/editText1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/button1"
-        android:layout_alignBottom="@+id/button1"
-        android:layout_alignParentLeft="true"
-        android:ems="10"
-        android:inputType="number" >
-
-        <requestFocus />
-    </EditText>
-
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/textView3"
-        android:layout_marginTop="24dp"
-        android:text="update" />
+        android:textSize="16sp"
+        android:textColor="#FF0080"
+        android:textStyle="bold"
+        android:text="@string/o_tab_documentation" />
 
     <TextView
         android:id="@+id/o_dbdump"
@@ -73,6 +38,49 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/editText1"
-        android:text="@+id/o_dbdump_textview" />
+        android:text="@+id/o_dbdump_textview"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/o_tab_updateButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/o_tab_numberEntry"
+        android:layout_alignBottom="@+id/o_tab_numberEntry"
+        android:layout_alignParentRight="true"
+        android:text="@string/o_tab_update" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView1"
+        android:layout_alignBottom="@+id/textView1"
+        android:layout_toLeftOf="@+id/o_tab_updateButton"
+        android:text="@string/menuListSizeOption"
+        android:textColor="#00C000"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textView3"
+        android:text="@string/o_tab_sizeOpttionTexthelper"
+        android:textColor="#00C000"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/o_tab_numberEntry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textView1"
+        android:ems="10"
+        android:inputType="number" >
+
+        <requestFocus />
+    </EditText>
 
 </RelativeLayout>

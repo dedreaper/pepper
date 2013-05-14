@@ -3,11 +3,8 @@ package com.example.pepper;
 import java.util.ArrayList;
 
 import android.annotation.TargetApi;
-import android.app.ActivityManager;
-import android.app.ActivityManager.RecentTaskInfo;
 import android.app.ListActivity;
 import android.content.Intent;
-import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,7 +19,7 @@ public class DbDropDownMenu extends ListActivity{
     private static final String TAG = null;
 	ArrayList<Long> RowIDList = new ArrayList<Long>();
 	ArrayList<String> labelList = new ArrayList<String>();
-	private static final int SELF_FILTER_BUFFER_SIZE = 2;
+	//private static final int SELF_FILTER_BUFFER_SIZE = 2;
 	int SizeOption = R.string.menuListSizeOption;
 	
 	

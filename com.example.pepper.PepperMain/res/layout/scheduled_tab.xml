@@ -4,15 +4,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical" 
     android:background="@drawable/pepperfire2"
-    >"
+    >
 
-    <Button
-        android:id="@+id/s_disablebutton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:text="Disable" />
+    
 
     <TextView
         android:id="@+id/textView2"
@@ -21,7 +15,8 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:background="#00A0A0"
-        android:text="Scheduled Tasks Tab" 
+        android:text="@string/s_tab_title" 
+        android:textSize="20sp"
         android:gravity="center"/>
 
     <ProgressBar
@@ -33,14 +28,6 @@
         android:layout_alignParentRight="true"
         android:layout_below="@+id/textView2" />
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/progressBar1"
-        android:text="Touch &quot;program&quot; to select a recently used program, edit your preferred date/time to launch by selecting the corresponding buttons, or disable by pressing the disable button." />
-
     <Button
         android:id="@+id/s_progbutton"
         android:layout_width="wrap_content"
@@ -48,32 +35,51 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/textView3"
-        android:text="Button" />
-
-    <Button
-        android:id="@+id/s_timebutton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/s_disablebutton"
-        android:layout_alignBottom="@+id/s_disablebutton"
-        android:layout_toRightOf="@+id/s_daybutton"
-        android:text="Time" />
+        android:text="@string/program_button" />
 
     <Button
         android:id="@+id/s_daybutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/s_timebutton"
-        android:layout_alignBottom="@+id/s_timebutton"
         android:layout_alignParentLeft="true"
-        android:text="Day" />
+        android:layout_below="@+id/s_progbutton"
+        android:text="@string/s_tab_day" />
+
+    <Button
+        android:id="@+id/s_timebutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/s_daybutton"
+        android:layout_alignBottom="@+id/s_daybutton"
+        android:layout_toRightOf="@+id/s_daybutton"
+        android:text="@string/s_tab_time" />
 
     <Button
         android:id="@+id/s_updatebutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/s_disablebutton"
+        android:layout_alignBaseline="@+id/s_timebutton"
+        android:layout_alignBottom="@+id/s_timebutton"
         android:layout_toLeftOf="@+id/s_disablebutton"
-        android:text="Update" />
+        android:text="@string/s_tab_update" />
+
+    <Button
+        android:id="@+id/s_disablebutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/s_updatebutton"
+        android:layout_alignBottom="@+id/s_updatebutton"
+        android:layout_alignParentRight="true"
+        android:text="@string/s_tab_disable" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/progressBar1"
+        android:text="@string/s_tab_documentation"
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
 </RelativeLayout>

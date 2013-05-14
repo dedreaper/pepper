@@ -1,17 +1,10 @@
 package com.example.pepper;
 
-import java.util.Iterator;
 import java.util.List;
 
 
 import android.os.Bundle;
 import android.annotation.TargetApi;
-import android.app.Activity;
-import android.app.ActivityManager;
-import android.app.ActivityManager.RunningAppProcessInfo;
-import android.app.ActivityManager.RunningServiceInfo;
-import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
@@ -27,10 +20,10 @@ public class PepperMain extends FragmentActivity {
 
 	
     private static final String TAG = null;
-	private ActivityManager mActivityManager;
-	private Activity mContext;
+	//private ActivityManager mActivityManager;
+	//private Activity mContext;
 
-	private String appname;
+	//private String appname;
 
 	
 	/**
@@ -251,7 +244,7 @@ public class PepperMain extends FragmentActivity {
         return true;
     }
 
-   
+   /*
     private RunningAppProcessInfo getForegroundApp() {
         RunningAppProcessInfo result=null, info=null;
 
@@ -334,7 +327,7 @@ public class PepperMain extends FragmentActivity {
 
         return false;
     }
-    
+*/    
     
     
 	public Intent findTwitterClient() {

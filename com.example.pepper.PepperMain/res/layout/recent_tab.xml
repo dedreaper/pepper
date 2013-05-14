@@ -10,20 +10,12 @@
         android:id="@+id/recentTabTitle"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Recent Tasks Tab:" 
+        android:text="@string/r_tab_title" 
+        android:textSize="20sp"
         android:background="#FF8000"
         android:gravity="center"
         
         />
-
-    <Button
-        android:id="@+id/RTABdayButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/RTABtimeButton"
-        android:layout_alignBottom="@+id/RTABtimeButton"
-        android:layout_alignParentLeft="true"
-        android:text="@string/r_tab_day" />
 
     <ProgressBar
         android:id="@+id/progressBar1"
@@ -39,20 +31,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/progressBar1"
-        android:text="Touch &quot;program&quot; to select a recently used program, edit your preferred date/time to launch, and execute by pressing the automate button." />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/textView1"
-        android:layout_marginBottom="35dp"
-        android:layout_marginTop="35dp"
-        android:gravity="center"
-        android:text="Program"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:text="@string/r_tab_documentation" />
 
     <Button
         android:id="@+id/RTABautomateButton"
@@ -64,12 +45,28 @@
         android:text="@string/r_tab_automate" />
 
     <Button
+        android:id="@+id/r_tab_program"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/textView1"
+        android:text="@string/program_button" />
+
+    <Button
+        android:id="@+id/RTABdayButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/r_tab_program"
+        android:text="@string/r_tab_day" />
+
+    <Button
         android:id="@+id/RTABtimeButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/textView2"
-        android:layout_marginTop="20dp"
+        android:layout_below="@+id/r_tab_program"
         android:text="@string/r_tab_time" />
 
 </RelativeLayout>

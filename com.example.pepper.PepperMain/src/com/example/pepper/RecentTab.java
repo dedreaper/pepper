@@ -1,11 +1,8 @@
 package com.example.pepper;
 
-import java.util.Calendar;
-
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
-import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -13,12 +10,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.Toast;
 @TargetApi(7)
 public class RecentTab extends Fragment {
 	private static final boolean VERBOSE = true;
 	private static final String TAG = null;
-	TextView ProgName;
+	Button ProgName;
 	Button DayButton;
 	Button TimeButton;
 	Button AutomateButton;
@@ -49,7 +46,7 @@ public class RecentTab extends Fragment {
 	public void onActivityCreated(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onActivityCreated(savedInstanceState);
-		ProgName = (TextView) getActivity().findViewById(R.id.textView2);
+		ProgName = (Button) getActivity().findViewById(R.id.r_tab_program);
 		//on click listener code is breaking the game
 		ProgName.setOnClickListener(new View.OnClickListener() {
 			
@@ -109,8 +106,14 @@ public class RecentTab extends Fragment {
 				if (VERBOSE) Log.v(TAG, "++Database entry code failed++");
 				worked = false;
 				}
-				if (VERBOSE && worked == true) Log.v(TAG, "++Database entry successful++");
-				
+				if (VERBOSE && worked == true) 
+					{
+					Intent service = new Intent(getActivity().getBaseContext(), LauncherService.class);
+					getActivity().stopService(service);
+					getActivity().startService(service);
+					Toast.makeText(getActivity().getBaseContext(), "Automation Entry Created", Toast.LENGTH_LONG).show();
+					Log.v(TAG, "++Database entry successful++");
+					}
 			}
 		});
 	}

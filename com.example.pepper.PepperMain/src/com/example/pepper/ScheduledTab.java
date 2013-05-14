@@ -10,7 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.Toast;
 @TargetApi(7)
 public class ScheduledTab extends Fragment {
 	private static final boolean VERBOSE = true;
@@ -105,7 +105,14 @@ public class ScheduledTab extends Fragment {
 				if (VERBOSE) Log.v(TAG, "++Database update failed++");
 				worked = false;
 				}
-				if (VERBOSE && worked == true) Log.v(TAG, "++Update successful++");
+				if (VERBOSE && worked == true)
+				{
+					Intent service = new Intent(getActivity().getBaseContext(), LauncherService.class);
+					getActivity().stopService(service);
+					getActivity().startService(service);
+					Toast.makeText(getActivity().getBaseContext(), "Automation Entry Updated", Toast.LENGTH_LONG).show();
+					Log.v(TAG, "++Update successful++");
+				}
 				
 			}
 		});
@@ -130,7 +137,14 @@ public class ScheduledTab extends Fragment {
 				if (VERBOSE) Log.v(TAG, "++Database delete failed++");
 				worked = false;
 				}
-				if (VERBOSE && worked == true) Log.v(TAG, "++Deletion successful++");
+				if (VERBOSE && worked == true) 
+				{
+					Intent service = new Intent(getActivity().getBaseContext(), LauncherService.class);
+					getActivity().stopService(service);
+					getActivity().startService(service);
+					Toast.makeText(getActivity().getBaseContext(), "Automation Entry Removed", Toast.LENGTH_LONG).show();
+					Log.v(TAG, "++Deletion successful++");
+				}
 				
 			}
 		});

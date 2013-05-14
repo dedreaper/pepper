@@ -6,11 +6,13 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 public class EntryPoint extends FragmentActivity {
-
+    private static final boolean VERBOSE = true;
+    private static final String TAG = null;
     Button firstButton;
     Button secondButton;        
     Button thirdButton;
@@ -32,6 +34,9 @@ public class EntryPoint extends FragmentActivity {
         firstButton = (Button) findViewById(R.id.firstButton);
         secondButton = (Button) findViewById(R.id.secondButton);        
         thirdButton = (Button) findViewById(R.id.thirdButton);
+        if (VERBOSE) Log.v(TAG, "++ Attempting to launch service ++ ");
+		Intent service = new Intent(getBaseContext(), LauncherService.class);
+		startService(service); 
         firstButton.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -94,8 +99,6 @@ public class EntryPoint extends FragmentActivity {
 		// TODO Auto-generated method stub
 		super.onStart();
 		
-		//Intent service = new Intent(this, LauncherService.class);
-		//startService(service); 
         
 	}
 
@@ -120,5 +123,12 @@ public class EntryPoint extends FragmentActivity {
 		// TODO Auto-generated method stub
 		return super.onCreateView(name, context, attrs);
 	}
+
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+	}
+	
 
 }

@@ -4,13 +4,25 @@
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
     <string name="title_activity_pepper_main">Pepper</string>
-    <string name="s_tab_day">day</string>
-    <string name="s_tab_time">time</string>
+    <string name="s_tab_day">Day</string>
+    <string name="s_tab_time">Time</string>
+    <string name="s_tab_update">Update</string>
+    <string name="s_tab_disable">Disable</string>
+    <string name="o_tab_update">Update</string>   
     <string name="r_tab_day">select day</string>
     <string name="r_tab_time">select time</string>
+    <string name="o_tab_sizeOpttionTexthelper">Current task list maximum size:  </string>  
     <string name="menuListSizeOption">5</string>
     <string name="select">Select</string>
     <string name="cancel">Cancel</string>
     <string name="r_tab_automate">Create Automation Entry!</string>
-
+    <string name="r_tab_documentation">Touch the program button to select a recently used program, edit your preferred date/time to launch, and execute by pressing the Create Automation Entry button.</string>
+	<string name="s_tab_documentation">Touch the program button to select from a list of your automated entries.  Once selected, edit your preferred day to launch by pressing the Day button, or press the Time button to edit your preferred time.  Press the Update button to Update your entry.  You can remove the entry selected by pressing the Disable button.</string>
+	<string name="o_tab_documentation">Use the text area to edit the maximum number or programs that Pepper will fetch for you, and press update.  Pepper will only search for recent tasks up to the amount specified.</string>
+	<string name="r_tab_title">Recent Tasks Tab</string>
+	<string name="s_tab_title">Scheduled Tasks Tab</string>
+	<string name="o_tab_title">Options Tab</string>
+	<string name="program_button">Program</string>
+	
+	
 </resources>

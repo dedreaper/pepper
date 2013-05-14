@@ -1,8 +1,5 @@
 package com.example.pepper;
 
-import java.util.Calendar;
-import java.util.Locale;
-
 import android.annotation.TargetApi;
 import android.app.ListActivity;
 import android.content.Intent;

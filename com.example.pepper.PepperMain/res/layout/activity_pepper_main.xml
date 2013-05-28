@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
      >
 
 <TabHost 
@@ -26,7 +27,7 @@
                 android:background="@drawable/pepperbuttonpressed"
                 android:layout_width="100dp" 
                 android:layout_height="43dp"
-                android:text="Recent Tasks"
+                android:text="@string/r_tab_title_short" 
                 android:clickable="true"></Button>
 
             <Button
@@ -35,14 +36,14 @@
                 android:layout_height="43dp"
                 android:background="@drawable/pepperbutton"
                 android:clickable="true"
-                android:text="Scheduled Tasks" />
+                android:text="@string/s_tab_title_short" />
 
             <Button android:id="@+id/thirdButton"
                 android:layout_alignParentTop="true" 
                 android:background="@drawable/pepperbutton"
                 android:layout_width="75dp"
                 android:layout_height="43dp" 
-                android:text="Options"
+                android:text="@string/o_tab_title_short" 
                 android:clickable="true"></Button>
 
         </LinearLayout>

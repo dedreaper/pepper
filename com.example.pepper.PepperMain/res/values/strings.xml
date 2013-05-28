@@ -11,17 +11,20 @@
     <string name="o_tab_update">Update</string>   
     <string name="r_tab_day">select day</string>
     <string name="r_tab_time">select time</string>
-    <string name="o_tab_sizeOpttionTexthelper">Current task list maximum size:  </string>  
+    <string name="o_tab_sizeOpttionTexthelper">Number of recent tasks detected:  </string>  
     <string name="menuListSizeOption">5</string>
     <string name="select">Select</string>
     <string name="cancel">Cancel</string>
     <string name="r_tab_automate">Create Automation Entry!</string>
     <string name="r_tab_documentation">Touch the program button to select a recently used program, edit your preferred date/time to launch, and execute by pressing the Create Automation Entry button.</string>
-	<string name="s_tab_documentation">Touch the program button to select from a list of your automated entries.  Once selected, edit your preferred day to launch by pressing the Day button, or press the Time button to edit your preferred time.  Press the Update button to Update your entry.  You can remove the entry selected by pressing the Disable button.</string>
-	<string name="o_tab_documentation">Use the text area to edit the maximum number or programs that Pepper will fetch for you, and press update.  Pepper will only search for recent tasks up to the amount specified.</string>
+	<string name="s_tab_documentation">Touch the program button to select from a list of your automated entries.  Once selected, edit your preferred day to launch by pressing the Day button, or press the Time button to edit your preferred time.  Press the Update button after changing day/time to update your entry.  You can remove the entry selected by pressing the Disable button.</string>
+	<string name="o_tab_documentation">Pepper is an automatic task launching system.  Use the recent tasks tab to create a task to launch, and use the Scheduled tasks tab to manage your automated tasks.\n\nCredits:\n  Creator: \n\t\tLance Stewart\n Special Thanks To:\n\t\t TheNewBoston \n\t\t Google Inc.\n\t\t StackOverflow.com\n\t\t The Code Project\n\t\t and most importantly, you!\n\n</string>
 	<string name="r_tab_title">Recent Tasks Tab</string>
 	<string name="s_tab_title">Scheduled Tasks Tab</string>
-	<string name="o_tab_title">Options Tab</string>
+	<string name="o_tab_title">Information Tab</string>
+	<string name="r_tab_title_short">Recent Tasks</string>
+	<string name="s_tab_title_short">Scheduled Tasks</string>
+	<string name="o_tab_title_short">Info</string>
 	<string name="program_button">Program</string>
 	
 	

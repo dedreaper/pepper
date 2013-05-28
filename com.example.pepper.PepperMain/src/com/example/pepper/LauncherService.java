@@ -98,7 +98,7 @@ public class LauncherService extends Service {
 			        }
 			    };
 			    thread.start();
-			  return Service.START_NOT_STICKY;
+			  return Service.START_STICKY;
 			  
 		  }
 		  public int ExecuteNextTask(String Appname)

@@ -13,7 +13,8 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".PepperMain"
-            android:label="@string/title_activity_pepper_main" >
+            android:label="@string/title_activity_pepper_main"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="com.example.pepper.PEPPERMAIN" />
 
@@ -22,7 +23,8 @@
         </activity>
                <activity
             android:name=".Splash"
-            android:label="@string/title_activity_pepper_main" >
+            android:label="@string/title_activity_pepper_main"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -49,7 +51,8 @@
         </activity>
         <activity
             android:name=".EntryPoint"
-            android:label="@string/title_activity_pepper_main" >
+            android:label="@string/title_activity_pepper_main"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="com.example.pepper.ENTRY" />
 
